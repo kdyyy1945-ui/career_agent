@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#244d40">
+  <title>내 채용공고 · 자소서담</title>
+  <link rel="icon" href="/static/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/css/styles.css"><link rel="stylesheet" href="/static/css/experience.css"><link rel="stylesheet" href="/static/css/job_posting.css">
+  <script src="/static/js/job_posting.js" defer></script>
+</head>
+<body class="experience-page job-page" data-job-view="list">
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="/" aria-label="자소서담 홈"><span class="brand-icon" aria-hidden="true">담<i></i></span><span>자소서담<small>CAREER AGENT</small></span></a>
+    <nav class="experience-nav" aria-label="주 메뉴"><a href="/experience/me">내 경험</a><a href="/job-postings/me" aria-current="page">채용공고</a></nav>
+    <a class="text-link session-link" id="job-session-link" href="/login">로그인</a>
+  </div></header>
+  <main id="main" class="experience-main section-wrap">
+    <div class="workspace-heading"><div><p class="eyebrow"><span class="status-dot"></span> MY NEXT OPPORTUNITIES</p><h1>다음 기회가 시작되는 곳.</h1><p>관심 있는 채용공고와 기업 리서치를 한곳에 모아 보세요.</p></div><a class="button" href="/job-postings/create">새 공고 담기 <span aria-hidden="true">＋</span></a></div>
+    <div id="job-session" class="notice" role="status"><span id="job-session-text">로그인 상태를 확인하고 있어요.</span> <a id="job-login" href="/login" hidden>로그인하기 ↗</a><button id="job-session-retry" class="link-button" type="button" hidden>다시 확인</button></div>
+    <div id="job-error" class="error-notice" role="alert" tabindex="-1" hidden><p id="job-error-text"></p><button id="job-retry" class="link-button" type="button" hidden>다시 불러오기 ↻</button></div>
+    <p id="job-loading" class="collection-loading" role="status" hidden>채용공고를 불러오고 있어요…</p>
+    <section id="job-workspace" aria-label="내 채용공고 목록" hidden>
+      <div class="job-overview"><div><span>담아둔 공고</span><strong id="job-total">0</strong></div><div><span>7일 이내 마감</span><strong id="job-soon">0</strong></div><div><span>리서치 완료</span><strong id="job-researched">0</strong></div><p>한 걸음 더 알아보고,<br>나에게 맞는 기회를 찾아보세요.</p></div>
+      <div class="collection-toolbar"><div class="collection-filters" role="group" aria-label="공고 필터"><button class="filter-button" data-job-filter="all" aria-pressed="true" type="button">전체</button><button class="filter-button" data-job-filter="open" aria-pressed="false" type="button">마감 전</button><button class="filter-button" data-job-filter="researched" aria-pressed="false" type="button">리서치 완료</button><button class="filter-button" data-job-filter="closed" aria-pressed="false" type="button">마감</button></div><div class="job-search-tools"><input id="job-search" type="search" placeholder="회사명, 직무, 공고 제목 검색" aria-label="회사명, 직무, 공고 제목 검색"><select id="job-sort" aria-label="공고 정렬"><option value="recent">최근 담은 순</option><option value="deadline">마감일 가까운 순</option></select></div></div>
+      <p id="job-count" class="collection-count" role="status"></p><div id="job-list" class="collection-grid"></div>
+      <div id="job-empty" class="empty-state" hidden><span aria-hidden="true">✧</span><h2 id="job-empty-title">첫 번째 기회를 담아 볼까요?</h2><p id="job-empty-description">관심 있는 공고를 저장하고, 기업과 직무를 더 깊이 알아보세요.</p><a id="job-empty-create" class="button" href="/job-postings/create">첫 공고 담기 ＋</a><button id="job-reset-filters" class="secondary-button" type="button" hidden>검색·필터 초기화</button></div>
+    </section>
+    <noscript><p class="error-notice">채용공고를 확인하려면 JavaScript를 활성화해 주세요.</p></noscript>
+  </main>
+  <footer class="experience-footer section-wrap"><span class="footer-brand">자소서담</span><p>경험을 담아, 나답게.</p><small>© <span data-year>2026</span> Career Agent</small></footer>
+</body></html>

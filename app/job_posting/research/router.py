@@ -3,7 +3,7 @@ from app.job_posting.research.service import create_research, get_research
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 
-router = APIRouter(prefix="/api/job_posting", tags=["Research"])
+router = APIRouter(prefix="/api/job_posting", tags=["JobPosting"])
 
 @router.post("{job_posting_id}/research")
 async def research_create(

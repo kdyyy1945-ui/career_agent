@@ -253,7 +253,7 @@ if (form) {
       document.title = isRegister ? "가입 완료 · 자소서담" : "로그인 완료 · 자소서담";
       if (!isRegister) {
         const next = new URLSearchParams(window.location.search).get("next");
-        window.location.assign(next && /^\/experience\/(create|me|[1-9]\d*)$/.test(next) ? next : "/experience/create");
+        window.location.assign(next && /^\/(experience|job-postings)\/(create|me|[1-9]\d*)$/.test(next) ? next : "/experience/create");
       }
     } catch (error) {
       if (error.status === 401) showMessage("아이디 또는 비밀번호가 올바르지 않습니다. 다시 확인해 주세요.");

@@ -32,3 +32,19 @@ async def experience_my_page():
 @router.get("/experience/{experience_id}")
 async def experience_detail_page():
     return FileResponse(TEMPLATES / "experience_detail.html")
+
+@router.get("/job-postings/create")
+async def job_posting_create_page():
+    return FileResponse(TEMPLATES / "job_posting_create.html")
+
+
+@router.get("/job-postings/me")
+async def job_posting_my_page():
+    return FileResponse(TEMPLATES / "job_posting_me.html")
+
+
+@router.get("/job-postings/{job_posting_id}")
+async def job_posting_detail_page(job_posting_id: int):
+    return FileResponse(TEMPLATES / "job_posting_detail.html")
+
+

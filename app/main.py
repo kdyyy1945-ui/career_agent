@@ -12,6 +12,8 @@ from app.auth.model import User
 from app.auth.router import router as auth_router
 from app.pages.router import router as pages_router
 from app.experience.router import router as experience_router
+from app.job_posting.router import router as job_posting_router
+from app.job_posting.research.router import router as research_router
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 PAGES_DIR = Path(__file__).resolve().parent / "pages"
@@ -56,3 +58,5 @@ app.mount(
 app.include_router(auth_router)
 app.include_router(experience_router)
 app.include_router(pages_router)
+app.include_router(job_posting_router)
+app.include_router(research_router)
