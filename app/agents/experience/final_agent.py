@@ -3,7 +3,6 @@ from pydantic_ai import Agent
 
 from app.agents.experience.schema import FinalAgentInput, FinalAgentOutput
 
-load_dotenv()
 
 agent = Agent(
     "openai:gpt-5.6-luna",

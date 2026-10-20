@@ -17,43 +17,28 @@ class ResearchItem(BaseModel):
 
 
 class ResearchAgentOutput(BaseModel):
-    company_overview: list[ResearchItem] = Field(
+
+    business: list[ResearchItem] = Field(
         default_factory=list,
-        description="기업의 주요 사업, 제품, 서비스 및 고객"
+        description="지원 직무와 관련된 핵심 사업 및 서비스"
     )
 
-    vision_strategy: list[ResearchItem] = Field(
+    issue: list[ResearchItem] = Field(
         default_factory=list,
-        description="기업의 비전, 중장기 목표 및 핵심 사업 전략"
+        description="지원 직무와 관련된 기업 전략 및 최근 이슈"
     )
 
-    competitive_advantages: list[ResearchItem] = Field(
+    responsibilities: list[ResearchItem] = Field(
         default_factory=list,
-        description="경쟁사 대비 차별점과 경쟁 우위"
+        description="채용공고에 명시된 주요 담당 업무"
     )
 
-    recent_issues: list[ResearchItem] = Field(
+    requirements: list[ResearchItem] = Field(
         default_factory=list,
-        description="최근 주요 뉴스, 사업 동향 및 이슈"
+        description="채용공고에 명시된 필수 자격 및 요구 역량"
     )
 
-    company_culture: list[ResearchItem] = Field(
+    preferences: list[ResearchItem] = Field(
         default_factory=list,
-        description="기업의 인재상, 핵심 가치 및 조직 문화"
+        description="채용공고에 명시된 우대 사항"
     )
-
-    position_analysis: list[ResearchItem] = Field(
-        default_factory=list,
-        description="지원 직무의 주요 업무와 기업 내 역할"
-    )
-
-    required_competencies: list[ResearchItem] = Field(
-        default_factory=list,
-        description="지원 직무에 필요한 핵심 역량"
-    )
-
-    preferred_qualifications: list[ResearchItem] = Field(
-        default_factory=list,
-        description="채용 공고에 명시된 우대사항"
-    )
-
