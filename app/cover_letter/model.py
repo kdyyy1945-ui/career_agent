@@ -1,73 +1,69 @@
-from datetime import datetime, timezone
-
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import (
-    ForeignKey,
-    Text,
-    JSON,
-    DateTime,
-    UniqueConstraint,
-)
+from sqlalchemy import ForeignKey, Text, JSON, UniqueConstraint
 
 from app.core.database import Base
 
 
-class CoverLetterQuestion(Base):
-    __tablename__ = "cover_letter_questions"
+class CoverLetter(Base):
+    __tablename__ = "cover_letter"
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
     job_posting_id: Mapped[int] = mapped_column(
-        ForeignKey("job_postings.id"),
-        nullable=False
+        ForeignKey("job_posting.id"),
+        nullable=False,
+        unique=True
     )
 
-    question: Mapped[str] = mapped_column(Text)
-    max_length: Mapped[int | None]
 
-    analysis: Mapped[dict | None] = mapped_column(JSON)
-
-
-class CoverLetterFollowUp(Base):
-    __tablename__ = "cover_letter_follow_up"
+class CoverLetterQuestion(Base):
+    __tablename__ = "cover_letter_question"
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    question_id: Mapped[int] = mapped_column(
-        ForeignKey("cover_letter_questions.id", ondelete="CASCADE"),
-        nullable=False,
-        index=True
+    cover_letter_id: Mapped[int] = mapped_column(
+        ForeignKey("cover_letter.id"),
+        nullable=False
     )
 
+    order: Mapped[int]
+
     question: Mapped[str] = mapped_column(Text)
-    answer: Mapped[str | None] = mapped_column(Text)
 
+    max_length: Mapped[int | None] = mapped_column(
+        nullable=True
+    )
 
-class CoverLetterVersion(Base):
-    __tablename__ = "cover_letter_versions"
+    analysis: Mapped[dict | None] = mapped_column(
+        JSON,
+        nullable=True
+    )
+
+    draft: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True
+    )
 
     __table_args__ = (
-        UniqueConstraint("question_id", "version_number"),
+        UniqueConstraint("cover_letter_id", "order"),
     )
+
+
+class CoverLetterFollowup(Base):
+    __tablename__ = "cover_letter_followup"
 
     id: Mapped[int] = mapped_column(primary_key=True)
 
-    question_id: Mapped[int] = mapped_column(
-        ForeignKey("cover_letter_questions.id", ondelete="CASCADE"),
-        nullable=False,
-        index=True
-    )
-
-    version_number: Mapped[int]
-
-    content: Mapped[str] = mapped_column(Text)
-
-    is_final: Mapped[bool] = mapped_column(
-        default=False,
+    cover_letter_question_id: Mapped[int] = mapped_column(
+        ForeignKey("cover_letter_question.id"),
         nullable=False
     )
 
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        default=lambda: datetime.now(timezone.utc)
+    round: Mapped[int] = mapped_column(default=1)
+
+    question: Mapped[str] = mapped_column(Text)
+
+    answer: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True
     )

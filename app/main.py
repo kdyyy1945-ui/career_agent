@@ -3,22 +3,25 @@ from pathlib import Path
 from contextlib import asynccontextmanager
 
 from dotenv import load_dotenv
+BASE_DIR = Path(__file__).resolve().parents[1]
+PAGES_DIR = Path(__file__).resolve().parent / "pages"
+load_dotenv(BASE_DIR / ".env")
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
 from app.core.database import engine, Base
-from app.auth.model import User
 from app.auth.router import router as auth_router
 from app.pages.router import router as pages_router
 from app.experience.router import router as experience_router
 from app.job_posting.router import router as job_posting_router
 from app.job_posting.research.router import router as research_router
+from app.cover_letter.router import router as cover_letter_router
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-PAGES_DIR = Path(__file__).resolve().parent / "pages"
 
-load_dotenv(BASE_DIR / ".env")
+
+
+
 
 
 # 서버 시작 및 종료 관리
@@ -60,3 +63,4 @@ app.include_router(experience_router)
 app.include_router(pages_router)
 app.include_router(job_posting_router)
 app.include_router(research_router)
+app.include_router(cover_letter_router)

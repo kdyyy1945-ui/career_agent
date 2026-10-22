@@ -33,18 +33,21 @@ async def experience_my_page():
 async def experience_detail_page():
     return FileResponse(TEMPLATES / "experience_detail.html")
 
-@router.get("/job-postings/create")
-async def job_posting_create_page():
-    return FileResponse(TEMPLATES / "job_posting_create.html")
+# 자소서 문항 목록 및 작성 현황 페이지
+@router.get("/job-postings/{job_posting_id}/cover-letter")
+async def cover_letter_page(job_posting_id: int):
+    return FileResponse(TEMPLATES / "cover_letter.html")
 
 
-@router.get("/job-postings/me")
-async def job_posting_my_page():
-    return FileResponse(TEMPLATES / "job_posting_me.html")
+# 자소서 생성 및 문항 등록 페이지
+@router.get("/job-postings/{job_posting_id}/cover-letter/create")
+async def cover_letter_create_page(job_posting_id: int):
+    return FileResponse(TEMPLATES / "cover_letter_create.html")
 
 
-@router.get("/job-postings/{job_posting_id}")
-async def job_posting_detail_page(job_posting_id: int):
-    return FileResponse(TEMPLATES / "job_posting_detail.html")
+# 개별 자소서 문항 상세 페이지 (AI 작성, 추가 질문 답변, 초안 수정)
+@router.get("/cover-letter/questions/{question_id}")
+async def cover_letter_question_page(question_id: int):
+    return FileResponse(TEMPLATES / "cover_letter_question.html")
 
 
